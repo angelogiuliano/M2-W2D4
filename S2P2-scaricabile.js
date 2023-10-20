@@ -20,20 +20,80 @@ const marco = {
   name: "Marco",
   lastName: "Rossi",
   isAmbassador: true,
-}
+};
 
 const paul = {
   name: "Paul",
   lastName: "Flynn",
   isAmbassador: false,
-}
+};
 
 const amy = {
   name: "Amy",
   lastName: "Reed",
   isAmbassador: false,
+};
+
+const prices = [34, 30, 8];
+const shippingCost = 50;
+let utenteCheEffettuaLAcquisto = marco; //cambia il valore qui per provare se il tuo algoritmo funziona!
+
+let utenti = [];
+utenti.push(marco, paul, amy);
+
+// 1
+
+let prezzo = 0;
+let prezzoFinale = 0;
+
+for (let i = 0; i < prices.length; i++) {
+  prezzo += prices[i];
 }
 
-const prices = [34, 5, 2]
-const shippingCost = 50
-let utenteCheEffettuaLAcquisto = amy //cambia il valore qui per provare se il tuo algoritmo funziona!
+if (prezzo >= 100 && utenteCheEffettuaLAcquisto.isAmbassador) {
+  prezzoFinale = prezzo - (prezzo * 0, 3);
+  console.log("Il prezzo che dovrai pagare è " + prezzoFinale + " euro.");
+} else if (prezzo < 100 && utenteCheEffettuaLAcquisto.isAmbassador) {
+  prezzoFinale = prezzo - (prezzo * 0, 3) + shippingCost;
+  console.log(
+    "Il prezzo che dovrai pagare è " +
+      prezzoFinale +
+      " euro. Ti mancano " +
+      (prezzoFinale > 100 ? prezzoFinale - 100 : 100 - prezzoFinale) +
+      " euro per avere la spedizione gratuita"
+  );
+} else if (prezzo >= 100 && !utenteCheEffettuaLAcquisto.isAmbassador) {
+  prezzoFinale = prezzo;
+  console.log("Il prezzo che dovrai pagare è " + prezzoFinale + " euro.");
+} else if (prezzo < 100 && !utenteCheEffettuaLAcquisto.isAmbassador) {
+  prezzoFinale = prezzo + shippingCost;
+  console.log(
+    "Il prezzo che dovrai pagare è " +
+      prezzoFinale +
+      " euro. Ti mancano " +
+      (100 - prezzoFinale) +
+      " euro per avere la spedizione gratuita"
+  );
+}
+
+// 2
+for (let i = 0; i < utenti.length; i++) {
+  if (utenti[i].isAmbassador) {
+    console.log(utenti[i].name + " " + utenti[i].lastName + " è un Ambassador");
+  } else {
+    console.log(
+      utenti[i].name + " " + utenti[i].lastName + " non è un Ambassador"
+    );
+  }
+}
+
+// 3
+
+let ambassadors = [];
+for (let i = 0; i < utenti.length; i++) {
+  if (utenti[i].isAmbassador) {
+    ambassadors.push(utenti[i]);
+  }
+}
+
+console.log(ambassadors);

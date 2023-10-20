@@ -50,18 +50,24 @@ for (let i = 0; i < prices.length; i++) {
   prezzo += prices[i];
 }
 
-  if (utenteCheEffettuaLAcquisto.isAmbassador) {
-    prezzoFinale = prezzo - (prezzo * 0.3)
-  } else {
-    prezzoFinale = prezzo
-  }
-  
-  if (prezzoFinale >= 100) {
-    console.log("Dovrai pagare " + prezzoFinale + " euro");
-  } else if (prezzoFinale < 100) {
-      prezzoFinale = prezzoFinale + shippingCost
-      console.log("Dovrai pagare " + prezzoFinale + " euro. Ti mancano " + (100 - (prezzoFinale - shippingCost)).toFixed(1) + " euro per avere la spedizione gratuita.");
-  }
+if (utenteCheEffettuaLAcquisto.isAmbassador) {
+  prezzoFinale = prezzo - prezzo * 0.3;
+} else {
+  prezzoFinale = prezzo;
+}
+
+if (prezzoFinale >= 100) {
+  console.log("Dovrai pagare " + prezzoFinale + " euro");
+} else if (prezzoFinale < 100) {
+  prezzoFinale = prezzoFinale + shippingCost;
+  console.log(
+    "Dovrai pagare " +
+      prezzoFinale +
+      " euro. Ti mancano " +
+      (100 - (prezzoFinale - shippingCost)).toFixed(1) +
+      " euro per avere la spedizione gratuita."
+  );
+}
 
 // 2
 for (let i = 0; i < utenti.length; i++) {

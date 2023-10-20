@@ -50,31 +50,18 @@ for (let i = 0; i < prices.length; i++) {
   prezzo += prices[i];
 }
 
-if (prezzo >= 100 && utenteCheEffettuaLAcquisto.isAmbassador) {
-  prezzoFinale = prezzo - (prezzo * 0, 3);
-  console.log("Il prezzo che dovrai pagare è " + prezzoFinale + " euro.");
-} else if (prezzo < 100 && utenteCheEffettuaLAcquisto.isAmbassador) {
-  prezzoFinale = prezzo - (prezzo * 0, 3) + shippingCost;
-  console.log(
-    "Il prezzo che dovrai pagare è " +
-      prezzoFinale +
-      " euro. Ti mancano " +
-      (prezzoFinale > 100 ? prezzoFinale - 100 : 100 - prezzoFinale) +
-      " euro per avere la spedizione gratuita"
-  );
-} else if (prezzo >= 100 && !utenteCheEffettuaLAcquisto.isAmbassador) {
-  prezzoFinale = prezzo;
-  console.log("Il prezzo che dovrai pagare è " + prezzoFinale + " euro.");
-} else if (prezzo < 100 && !utenteCheEffettuaLAcquisto.isAmbassador) {
-  prezzoFinale = prezzo + shippingCost;
-  console.log(
-    "Il prezzo che dovrai pagare è " +
-      prezzoFinale +
-      " euro. Ti mancano " +
-      (100 - prezzoFinale) +
-      " euro per avere la spedizione gratuita"
-  );
-}
+  if (utenteCheEffettuaLAcquisto.isAmbassador) {
+    prezzoFinale = prezzo - (prezzo * 0.3)
+  } else {
+    prezzoFinale = prezzo
+  }
+  
+  if (prezzoFinale >= 100) {
+    console.log("Dovrai pagare " + prezzoFinale + " euro");
+  } else if (prezzoFinale < 100) {
+      prezzoFinale = prezzoFinale + shippingCost
+      console.log("Dovrai pagare " + prezzoFinale + " euro. Ti mancano " + (100 - (prezzoFinale - shippingCost)).toFixed(1) + " euro per avere la spedizione gratuita.");
+  }
 
 // 2
 for (let i = 0; i < utenti.length; i++) {
